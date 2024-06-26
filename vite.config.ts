@@ -16,11 +16,6 @@ export default defineConfig({
       },
     }),
   ],
-  build: {
-    rollupOptions: {
-      external: ['styled-components'],
-    },
-  },
   server: {
     proxy: {
       '/api': {
