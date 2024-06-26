@@ -12,20 +12,22 @@ const colors = {
   green5: '#1F2C1D',
   white: '#FFFFFF',
   black: '#000000',
+  lightgray: '#D3D3D3',
+  darkgray: '#808080',
 };
 
 const fonts = {
   heading1: css`
     font-family: 'Pretendard';
-    font-weight: bold;
-    color: ${colors.green5};
-    font-size: 50px;
+    font-weight: 600;
+    color: ${colors.black};
+    font-size: 3.3rem;
   `,
   heading1b: css`
     font-family: 'Pretendard';
     font-weight: 600;
-    color: ${colors.green5};
-    font-size: 55px;
+    color: ${colors.maingreen};
+    font-size: 3.3rem;
   `,
   heading1c: css`
     font-family: 'Pretendard';
@@ -35,15 +37,15 @@ const fonts = {
   `,
   heading2: css`
     font-family: 'Pretendard';
-    font-weight: bold;
-    color: ${colors.green5};
-    font-size: 36px;
+    font-weight: 600;
+    color: ${colors.black};
+    font-size: 2.3rem;
   `,
   heading2b: css`
     font-family: 'Pretendard';
-    font-weight: bold;
+    font-weight: 600;
     color: ${colors.maingreen};
-    font-size: 36px;
+    font-size: 2.3rem;
   `,
   heading3: css`
     font-family: 'Pretendard';
@@ -71,15 +73,15 @@ const fonts = {
   `,
   body: css`
     font-family: 'Pretendard';
-    font-weight: 500;
-    color: ${colors.dark};
-    font-size: 18.5px;
+    font-weight: 400;
+    color: ${colors.darkgray};
+    font-size: 1.2rem;
   `,
   body2: css`
     font-family: 'Pretendard';
-    font-weight: 500;
-    color: ${colors.dark};
-    font-size: 16.5px;
+    font-weight: bold;
+    color: ${colors.subgreen};
+    font-size: 1rem;
   `,
   body3: css`
     font-family: 'Pretendard';
@@ -91,6 +93,18 @@ const fonts = {
     font-family: 'Pretendard';
     font-weight: 500;
     color: ${colors.white};
+    font-size: 1rem;
+  `,
+  body5: css`
+    font-family: 'Pretendard';
+    font-weight: 600;
+    color: ${colors.black};
+    font-size: 1.6rem;
+  `,
+  body6: css`
+    font-family: 'Pretendard';
+    font-weight: 400;
+    color: ${colors.darkgray};
     font-size: 1rem;
   `,
 };
