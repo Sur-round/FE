@@ -1,17 +1,34 @@
+import Axios from '../../services/axios';
 import { useState } from 'react';
 import styled from 'styled-components';
 
 const SurveyLinkUpload = () => {
+  const [surveyName, setSurveyName] = useState('');
   const [surveyLink, setSurveyLink] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSurveyName(e.target.value);
+  };
+
+  const handleURLInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSurveyLink(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: api 연결
+    try {
+      const response = await Axios.post('/api/v1/url', {
+        name: surveyName,
+        url: surveyLink,
+      });
+      console.log('POST 응답 데이터:', response.data);
+    } catch (error) {
+      console.error('Error posting data', error);
+    }
+    setSurveyName('');
+    setSurveyLink('');
   };
+
   return (
     <SurveyLinkUploadLayout>
       <SurveyLinkUploadContainer>
@@ -20,9 +37,15 @@ const SurveyLinkUpload = () => {
         <FormLayout onSubmit={handleSubmit}>
           <Input
             type='text'
+            placeholder='설문조사 제목'
+            value={surveyName}
+            onChange={handleInputChange}
+          />
+          <Input
+            type='text'
             placeholder='설문조사 링크'
             value={surveyLink}
-            onChange={handleInputChange}
+            onChange={handleURLInputChange}
           />
           <Button type='submit'>배포하기</Button>
         </FormLayout>
@@ -66,6 +89,7 @@ const FormLayout = styled.form`
   display: flex;
   align-items: center;
   margin: 3rem 0 1rem 0;
+  gap: 1rem;
 `;
 
 const Input = styled.input`
@@ -79,7 +103,6 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  margin-left: 1rem;
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
