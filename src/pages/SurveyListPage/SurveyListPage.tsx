@@ -1,7 +1,13 @@
+import SurveyList from '../../components/SurveyList/SurveyList';
+
 interface SurveyListPageProps {}
 
 const SurveyListPage = ({}: SurveyListPageProps) => {
-  return <div>설문 리스트</div>;
+  return (
+    <>
+      <SurveyList />
+    </>
+  );
 };
 
 export default SurveyListPage;
