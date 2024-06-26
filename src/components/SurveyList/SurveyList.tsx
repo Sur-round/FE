@@ -1,25 +1,30 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Axios from '../../services/axios';
 
-const data = [
-  {
-    title: '스마트ICT융합공학과 종합설계1 팀프로젝트 수요조사',
-    link: 'https://docs.google.com/forms/',
-  },
-  {
-    title: '스마트ICT융합공학과 종합설계1 팀프로젝트 수요조사',
-    link: 'https://docs.google.com/forms/',
-  },
-  {
-    title: '스마트ICT융합공학과 종합설계1 팀프로젝트 수요조사',
-    link: 'https://docs.google.com/forms/',
-  },
-  {
-    title: '스마트ICT융합공학과 종합설계1 팀프로젝트 수요조사',
-    link: 'https://docs.google.com/forms/',
-  },
-];
+interface SurveyData {
+  id: number;
+  name: string;
+  url: string;
+}
 
 const SurveyList = () => {
+  const [data, setData] = useState<SurveyData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Axios.get('/api/v1/url');
+        setData(response.data);
+        console.log('API 응답 데이터:', response);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <SurveyListLayout>
       <Label>LIST</Label>
@@ -27,9 +32,9 @@ const SurveyList = () => {
       <SurveyListContainer>
         {data.map((item, index) => (
           <ListItem key={index}>
-            <p>{item.title}</p>
+            <p>{item.name}</p>
             <p>
-              링크: <a href={item.link}>{item.link}</a>
+              링크: <a href={item.url}>{item.url}</a>
             </p>
           </ListItem>
         ))}
