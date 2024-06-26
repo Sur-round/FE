@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-type Props = {};
-
-const SurveyLinkUpload = (props: Props) => {
+const SurveyLinkUpload = () => {
   const [surveyLink, setSurveyLink] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
