@@ -10,6 +10,8 @@ const colors = {
   subgreen: '#83C5BE',
   maingreen: '#006D77',
   green5: '#1F2C1D',
+  white: '#FFFFFF',
+  black: '#000000',
 };
 
 const fonts = {
@@ -27,9 +29,9 @@ const fonts = {
   `,
   heading1c: css`
     font-family: 'Pretendard';
-    font-weight: 600;\
+    font-weight: 600;
     color: ${colors.maingreen};
-    font-size: 55px;
+    font-size: 1.5rem;
   `,
   heading2: css`
     font-family: 'Pretendard';
@@ -78,6 +80,18 @@ const fonts = {
     font-weight: 500;
     color: ${colors.dark};
     font-size: 16.5px;
+  `,
+  body3: css`
+    font-family: 'Pretendard';
+    font-weight: 300;
+    color: ${colors.subgreen};
+    font-size: 1rem;
+  `,
+  body4: css`
+    font-family: 'Pretendard';
+    font-weight: 500;
+    color: ${colors.white};
+    font-size: 1rem;
   `,
 };
 
