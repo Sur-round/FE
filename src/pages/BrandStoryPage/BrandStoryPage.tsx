@@ -1,7 +1,7 @@
 interface BrandStoryPageProps {}
 
- const BrandStoryPage = ({}: BrandStoryPageProps) => {
-   return (<div></div>);
- };
+const BrandStoryPage = ({}: BrandStoryPageProps) => {
+  return <div>브랜드 스토리</div>;
+};
 
- export default BrandStoryPage; 
+export default BrandStoryPage;

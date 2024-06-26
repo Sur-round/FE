@@ -1,7 +1,7 @@
 interface ContactUsPageProps {}
 
- const ContactUsPage = ({}: ContactUsPageProps) => {
-   return (<div></div>);
- };
+const ContactUsPage = ({}: ContactUsPageProps) => {
+  return <div>문의하기</div>;
+};
 
- export default ContactUsPage; 
+export default ContactUsPage;
