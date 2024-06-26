@@ -1,7 +1,15 @@
+import SurveyLinkUpload from '../../components/SurveyDistribution/SurveyLinkUpload';
+import SurveySite from '../../components/SurveyDistribution/SurveySite';
+
 interface SurveyDistributionPageProps {}
 
 const SurveyDistributionPage = ({}: SurveyDistributionPageProps) => {
-  return <div>설문 배포</div>;
+  return (
+    <>
+      <SurveyLinkUpload />
+      <SurveySite />
+    </>
+  );
 };
 
 export default SurveyDistributionPage;
