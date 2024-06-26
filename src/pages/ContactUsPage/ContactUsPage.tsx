@@ -1,7 +1,13 @@
+import ContactUs from '../../components/ContactUs/ContactUs';
+
 interface ContactUsPageProps {}
 
 const ContactUsPage = ({}: ContactUsPageProps) => {
-  return <div>문의하기</div>;
+  return (
+    <>
+      <ContactUs />
+    </>
+  );
 };
 
 export default ContactUsPage;
