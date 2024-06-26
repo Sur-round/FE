@@ -1,79 +1,53 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Axios from '../../services/axios';
 
-const categories = [
-  {
-    title: 'IT',
-    links: [
-      'http://surf-it.io/',
-      'http://disquiet.io/',
-      'http://careerly.co.kr/',
-      'http://outstanding.kr/',
-      'http://longblack.co/',
-      'http://page.stibee.com/',
-      'http://themiilk.com/',
-      'http://eopla.net/magazines',
-      'https://open.kakao.com/o/gECT4Nbb',
-      'https://open.kakao.com/o/gcapg6ub',
-      'https://open.kakao.com/o/gQGtno',
-    ],
-  },
-  {
-    title: '취업',
-    links: [
-      'https://comento.kr/job-questions',
-      'https://www.saramin.co.kr/zf_user/company-review-qst-and-ans',
-      'https://www.jobkorea.co.kr/User/Qstn/QstnBizGroup?GroupCode=1000041',
-      'https://community.linkareer.com',
-      'https://www.gamejob.co.kr/community/talk/list',
-      'https://gall.dcinside.com/board/lists?id=employment',
-    ],
-  },
-  {
-    title: '교육',
-    links: [
-      'https://ssamcafe.kr/',
-      'https://school.iamservice.net/',
-      'https://cafe.naver.com/ykintelligentschool',
-      'https://www.univ100.kr/',
-      'http://www.majormap.net/',
-      'http://cafe.naver.com/suhui',
-      'http://cafe.naver.com/kongdae',
-      'http://www.onldo.kr/',
-      'http://cafe.daum.net/papa.com',
-      'http://adiga.kr/',
-      'http://www.academyinfo.go.kr/',
-      'https://school.iamservice.net/',
-    ],
-  },
-  {
-    title: '게임',
-    links: [
-      'https://m.inven.co.kr/',
-      'https://www.hungryapp.co.kr/',
-      'https://gall.dcinside.com/board/lists?id=game1_new',
-      'https://inditor.co.kr/',
-    ],
-  },
-  {
-    title: '건강',
-    links: ['http://www.365healthcare.co.kr/', 'http://swallaby.com/'],
-  },
-  {
-    title: '장애',
-    links: ['https://dpikorea.org/bbs/board.php?bo_table=B31'],
-  },
-];
+interface SiteData {
+  id: number;
+  site: string;
+  category: string;
+}
+
+const categories = {
+  IT: 'IT',
+  취업: 'employ',
+  교육: 'edu',
+  건강: 'health',
+  게임: 'game',
+  장애: 'disabled',
+  정책: 'policy',
+  마케팅: 'marketing',
+};
 
 const SurveySite = () => {
+  const [data, setData] = useState<{ [key: string]: string[] }>({});
+
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      try {
+        const newData: { [key: string]: string[] } = {};
+        for (const [key, value] of Object.entries(categories)) {
+          const response = await Axios.get(`/api/v1/sites?category=${value}`);
+          newData[key] = response.data.map((item: SiteData) => item.site);
+        }
+        setData(newData);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    };
+
+    fetchCategoryData();
+  }, []);
+
   return (
     <SurveySiteLayout>
       <Title>설문조사 배포사이트 정리</Title>
       <SurveySiteContainer>
-        {categories.map((category, index) => (
+        {Object.entries(data).map(([category, links], index) => (
           <CategoryCard key={index}>
-            <CategoryTitle>{category.title}</CategoryTitle>
+            <CategoryTitle>{category}</CategoryTitle>
             <LinksList>
-              {category.links.map((link, idx) => (
+              {links.map((link, idx) => (
                 <LinkItem key={idx}>
                   <a href={link}>{link}</a>
                 </LinkItem>
@@ -107,7 +81,6 @@ const SurveySiteContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   padding: 2rem 6rem;
-  align-items: start;
 `;
 
 const CategoryCard = styled.div`
