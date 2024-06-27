@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import CommonHome2 from '../@common/CommonHome2';
+import HomeImg1 from '../../../public/svg/home_img1.png';
+import HomeImg2 from '../../../public/svg/home_img2.png';
+import HomeImg3 from '../../../public/svg/home_img3.png';
 
 const Home2 = () => {
   return (
@@ -8,19 +11,19 @@ const Home2 = () => {
       <Title>대학생이 Sur-round를 사용하는 이유</Title>
       <Home2Container>
         <CommonHome2
-          imageUrl='public/svg/home_img1.png'
+          imageUrl={HomeImg1}
           altText='home_img1'
           title='설문조사 배포'
           content={`제작한 설문조사 링크를 업로드하면\n각종 커뮤니티에 무료 배포해드립니다.`}
         />
         <CommonHome2
-          imageUrl='public/svg/home_img2.png'
+          imageUrl={HomeImg2}
           altText='home_img2'
           title='응답자 보상'
           content={`데이터 수집 알림을 받거나 응답자에게\n보상을 제공하는 일도 한 번에 해결하세요.`}
         />
         <CommonHome2
-          imageUrl='public/svg/home_img3.png'
+          imageUrl={HomeImg3}
           altText='home_img3'
           title='데이터 분석_개발 중'
           content={`전체 데이터 분석과 요약으로\n데이터 파악 시간을 줄여드립니다.`}
